@@ -37,13 +37,13 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-offWhite  h-screen">
+    <div className="flex flex-col items-center bg-offWhite h-screen">
       <Navbar
         aboutRef={scrollToAbout}
         portfolioRef={scrollToPortfolio}
         contactRef={scrollToContact}
       />
-      <main className="mt-24">
+      <main className="mt-24 w-full">
         <About forwardedRef={aboutRef} />
         <Portfolio forwardedRef={portfolioRef} />
         <Contact forwardedRef={contactRef} />
