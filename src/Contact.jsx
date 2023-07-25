@@ -9,33 +9,33 @@ const Contact = ({ forwardedRef }) => {
   return (
     <div className="bg-lightGray py-10" ref={forwardedRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-amber-500 mb-8">Contact</h1>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="flex justify-between">
+          <h1 className="text-3xl font-bold text-amber-500 mb-8">Contact</h1>
           <div>
-            <h2 className="text-xl font-bold text-zinc-700 mb-4">Find Me On</h2>
             <div className="flex items-center mb-4">
               <a
                 href="https://github.com/HChipev"
                 target="_blank"
-                className="mr-4 text-3xl text-amber-500 hover:text-amber-600 transition">
+                className="mr-4 text-3xl text-amber-500 hover:text-blue transition duration-300">
                 <FontAwesomeIcon icon="fa-brands fa-github" />
               </a>
               <a
                 href="https://www.instagram.com/_hchipev_/"
                 target="_blank"
-                className="mr-4 text-3xl text-amber-500 hover:text-amber-600 transition">
+                className="mr-4 text-3xl text-amber-500 hover:text-blue transition duration-300">
                 <FontAwesomeIcon icon="fa-brands fa-instagram" />
               </a>
               <a
                 href="https://www.linkedin.com/in/hristo-chipev/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-3xl text-amber-500 hover:text-amber-600 transition">
+                className="text-3xl text-amber-500 hover:text-blue transition duration-300">
                 <FontAwesomeIcon icon="fa-brands fa-linkedin" />
               </a>
             </div>
           </div>
-          {/* Email Form */}
+        </div>
+        <div className="flex flex-col">
           <div>
             <h2 className="text-xl font-bold text-zinc-700 mb-4">
               Send Me an Email

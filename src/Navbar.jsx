@@ -15,6 +15,12 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
         src="/src/assets/me.jpg"
         alt="photo"
       />
+      <div className="flex flex-1 justify-start items-center px-2 cursor-default">
+        <h1 className="font-extrabold text-3xl text-offWhite name-container relative">
+          <span className="italic">Hristo</span>{" "}
+          <span className="text-blue underline-effect">Chipev</span>
+        </h1>
+      </div>
       <div className="hidden sm:flex justify-center items-center gap-4 px-2">
         <div
           className="cursor-pointer hover:text-white transition"

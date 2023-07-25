@@ -12,7 +12,7 @@ const About = ({ forwardedRef }) => {
     <div
       className="bg-offWhite w-full flex justify-center items-center"
       ref={forwardedRef}>
-      <div className="max-w-2xl bg-white p-8 rounded shadow-zinc-700 shadow-md">
+      <div className="max-w-6xl bg-white p-8 rounded shadow-zinc-700 shadow-md">
         <h1 className="text-3xl font-bold mb-4">
           About Me - Full-Stack Developer
         </h1>
