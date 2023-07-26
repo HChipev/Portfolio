@@ -1,41 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollPercentage, setScrollPercentage] = useState(0);
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const updateScrollPercentage = () => {
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const percentage = (scrollTop / scrollHeight) * 100;
+    setScrollPercentage(percentage);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", updateScrollPercentage);
+    return () => {
+      window.removeEventListener("scroll", updateScrollPercentage);
+    };
+  }, []);
   return (
-    <div className="flex fixed bg-amber-500 justify-between w-full h-16 z-50 border-b-2 border-b-offWhite">
+    <div className="flex fixed bg-white justify-between w-full h-16 z-50 border-b border-b-amber-500">
       <img
-        className="w-20 h-20 rounded-[50%] shadow-md object-cover z-10"
+        className="w-20 h-20 rounded-[50%] shadow-md object-cover z-10 spinOnHover"
         src="/src/assets/me.jpg"
         alt="photo"
       />
+      <div className="h-1 bg-white absolute bottom-0 left-0 right-0">
+        <div
+          className="h-full bg-amber-500 rounded-xl"
+          style={{ width: `${scrollPercentage}%` }}></div>
+      </div>
       <div className="flex flex-1 justify-start items-center px-2 cursor-default">
-        <h1 className="font-extrabold text-3xl text-offWhite name-container relative">
+        <h1 className="font-extrabold text-3xl text-blue name-container relative">
           <span className="italic">Hristo</span>{" "}
-          <span className="text-blue underline-effect">Chipev</span>
+          <span className="text-amber-500 underline-effect">Chipev</span>
         </h1>
       </div>
       <div className="hidden sm:flex justify-center items-center gap-4 px-2">
         <div
-          className="cursor-pointer hover:text-white transition"
+          className="cursor-pointer hover:text-amber-500 transition"
           onClick={aboutRef}>
           <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
           About me
         </div>
         <div
-          className="cursor-pointer hover:text-white transition"
+          className="cursor-pointer hover:text-amber-500 transition"
           onClick={portfolioRef}>
           <FontAwesomeIcon icon="fa-regular fa-folder-open" className="mr-1" />
           Portfolio
         </div>
         <div
-          className="cursor-pointer hover:text-white transition"
+          className="cursor-pointer hover:text-amber-500 transition"
           onClick={contactRef}>
           <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
           Contact me
@@ -46,7 +66,7 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
         <FontAwesomeIcon
           icon={isMobileMenuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
           onClick={handleMobileMenuToggle}
-          className={`text-white text-2xl cursor-pointer ${
+          className={`text-amber-500 text-2xl cursor-pointer ${
             isMobileMenuOpen ? "rotate-90" : "rotate-0"
           } transition-transform duration-150 ease-linear`}
         />
@@ -54,16 +74,16 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
       <div
         className={`${
           isMobileMenuOpen ? "max-h-96" : " max-h-0"
-        } overflow-hidden transition-all ease-linear duration-500 sm:hidden absolute top-16 right-0 left-0 bg-amber-500 border-b-2 border-b-offWhite`}>
+        } overflow-hidden transition-all ease-linear duration-500 sm:hidden absolute top-16 right-0 left-0 bg-white border-b border-b-amber-500`}>
         <div className="flex flex-col justify-center items-center gap-4 py-4">
           <div
-            className="cursor-pointer hover:text-white transition"
+            className="cursor-pointer hover:text-amber-500 transition"
             onClick={aboutRef}>
             <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
             About me
           </div>
           <div
-            className="cursor-pointer hover:text-white transition"
+            className="cursor-pointer hover:text-amber-500 transition"
             onClick={portfolioRef}>
             <FontAwesomeIcon
               icon="fa-regular fa-folder-open"
@@ -72,7 +92,7 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
             Portfolio
           </div>
           <div
-            className="cursor-pointer hover:text-white transition"
+            className="cursor-pointer hover:text-amber-500 transition"
             onClick={contactRef}>
             <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
             Contact me

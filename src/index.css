@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: #f1f1f1;
 }
 
 @keyframes fadeIn {
@@ -32,7 +32,7 @@ body {
   inset: 0;
   width: 100%;
   height: 3px;
-  background-color: #0077b6;
+  background-color: #f59e0b;
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 0.3s ease-in;
@@ -40,4 +40,93 @@ body {
 
 .underline-effect:hover::after {
   transform: scaleX(1);
+}
+
+.center {
+  display: flex;
+}
+
+.word {
+  font-size: 0;
+}
+
+.word > * {
+  display: inline-block;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  transition: all 1s cubic-bezier(0.18, 0.93, 0.33, 0.95);
+}
+
+.word:hover > * {
+  margin-top: -3px;
+  cursor: pointer;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+
+  animation: move 1s cubic-bezier(0.18, 0.93, 0.33, 0.95)
+    calc((10 - var(--n)) / 10 * 1s) infinite;
+}
+
+.word > *:nth-child(1) {
+  --n: 1;
+}
+
+.word > *:nth-child(2) {
+  --n: 2;
+}
+
+.word > *:nth-child(3) {
+  --n: 3;
+}
+
+.word > *:nth-child(4) {
+  --n: 4;
+}
+
+.word > *:nth-child(5) {
+  --n: 5;
+}
+
+.word > *:nth-child(6) {
+  --n: 6;
+}
+
+.word > *:nth-child(7) {
+  --n: 7;
+}
+
+.word > *:nth-child(8) {
+  --n: 8;
+}
+
+.word > *:nth-child(9) {
+  --n: 9;
+}
+
+.word > *:nth-child(10) {
+  --n: 10;
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinOnHover:hover {
+  animation: spin 2s cubic-bezier(0.18, 0.93, 0.33, 0.95);
 }

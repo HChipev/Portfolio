@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
 import Navbar from "./Navbar";
+import About from "./About";
+import Portfolio from "./Portfolio";
+import Contact from "./Contact";
+import Footer from "./Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 // import your icons
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import About from "./About";
-import Portfolio from "./Portfolio";
-import Contact from "./Contact";
 
 function App() {
   const aboutRef = useRef(null);
@@ -37,7 +38,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-offWhite h-screen">
+    <div className="flex flex-col items-center bg-lightGray h-screen">
       <Navbar
         aboutRef={scrollToAbout}
         portfolioRef={scrollToPortfolio}
@@ -48,6 +49,11 @@ function App() {
         <Portfolio forwardedRef={portfolioRef} />
         <Contact forwardedRef={contactRef} />
       </main>
+      <Footer
+        aboutRef={scrollToAbout}
+        portfolioRef={scrollToPortfolio}
+        contactRef={scrollToContact}
+      />
     </div>
   );
 }
