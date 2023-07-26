@@ -11,26 +11,26 @@ const Contact = ({ forwardedRef }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-      };
-      debugger;
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const userId = import.meta.env.VITE_EMAILJS_USER_ID;
 
-      await emailjs.send(serviceId, templateId, templateParams, userId);
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+    };
 
-      successNotification("Email sent successfully!");
-    } catch (error) {
-      console.log(error);
-      errorNotifications(
-        "An error occurred while sending the email. Please try again later."
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userId = import.meta.env.VITE_EMAILJS_USER_ID;
+
+    await emailjs
+      .send(serviceId, templateId, templateParams, userId)
+      .catch(() =>
+        errorNotifications(
+          "An error occurred while sending the email. Please try again later."
+        )
       );
-    }
+
+    successNotification("Email sent successfully!");
   };
 
   return (
