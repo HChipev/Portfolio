@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 import emailjs from "emailjs-com";
-import { errorNotifications } from "./Notifications";
+import { errorNotifications, successNotification } from "./Notifications";
 
 const Contact = ({ forwardedRef }) => {
   const [name, setName] = useState("");
@@ -17,7 +17,7 @@ const Contact = ({ forwardedRef }) => {
         from_email: email,
         message: message,
       };
-      debugger;
+
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const userId = import.meta.env.VITE_EMAILJS_USER_ID;
@@ -26,7 +26,6 @@ const Contact = ({ forwardedRef }) => {
 
       successNotification("Email sent successfully!");
     } catch (error) {
-      console.log(error);
       errorNotifications(
         "An error occurred while sending the email. Please try again later."
       );
