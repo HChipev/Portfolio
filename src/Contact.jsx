@@ -26,6 +26,7 @@ const Contact = ({ forwardedRef }) => {
 
       successNotification("Email sent successfully!");
     } catch (error) {
+      console.log(error);
       errorNotifications(
         "An error occurred while sending the email. Please try again later."
       );
