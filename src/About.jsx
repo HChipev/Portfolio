@@ -3,7 +3,7 @@ const workHistory = [
     id: 1,
     company: "Blankfactor",
     dates: "Apr 2023 - Present",
-    imageUrl: "/assets/blankfactor-logo.jpg",
+    imageUrl: "/blankfactor-logo.jpg",
     siteUrl: "https://blankfactor.com/",
   },
 ];
