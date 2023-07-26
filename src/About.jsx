@@ -49,7 +49,7 @@ const About = ({ forwardedRef }) => {
         <h2 className="text-xl font-bold mb-2">Skills</h2>
         <ul className="list-disc list-inside">
           <li>.Net/C#</li>
-          <li>Js/Vue/Nuxt</li>
+          <li>Js/Vue/Nuxt/React</li>
           <li>Git/GitHub</li>
           <li>HTML/CSS</li>
           <li>SQL</li>
