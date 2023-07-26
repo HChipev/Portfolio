@@ -27,7 +27,7 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
     <div className="flex fixed bg-white justify-between w-full h-16 z-50 border-b border-b-amber-500">
       <img
         className="w-20 h-20 rounded-[50%] shadow-md object-cover z-10 spinOnHover"
-        src="/src/assets/me.jpg"
+        src="/assets/me.jpg"
         alt="photo"
       />
       <div className="h-1 bg-white absolute bottom-0 left-0 right-0">

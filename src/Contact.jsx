@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+
 import emailjs from "emailjs-com";
+import { errorNotifications } from "./Notifications";
 
 const Contact = ({ forwardedRef }) => {
   const [name, setName] = useState("");
@@ -22,9 +24,11 @@ const Contact = ({ forwardedRef }) => {
 
       await emailjs.send(serviceId, templateId, templateParams, userId);
 
-      alert("Email sent successfully!");
+      successNotification("Email sent successfully!");
     } catch (error) {
-      console.error("Error sending email:", error);
+      errorNotifications(
+        "An error occurred while sending the email. Please try again later."
+      );
     }
   };
 

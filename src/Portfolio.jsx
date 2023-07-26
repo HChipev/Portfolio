@@ -7,7 +7,7 @@ const projects = [
     title: "4ip's Auto",
     description:
       "4ip's Auto: A one-stop platform for buying and selling used cars and car parts. Intuitive interface, and hassle-free experience.",
-    imageUrl: "/src/assets/4ips-auto.jpg",
+    imageUrl: "/assets/4ips-auto.jpg",
     siteUrl: "https://4ips-auto.vercel.app/",
   },
   {
@@ -15,7 +15,7 @@ const projects = [
     title: "Sanction List Checker",
     description:
       "Sanction List Checker: Streamlined verification against sanction lists. Ensure compliance with ease.",
-    imageUrl: "/src/assets/sanc-project.jpg",
+    imageUrl: "/assets/sanc-project.jpg",
     siteUrl: "https://sanction-list-checker.vercel.app/",
   },
 ];

@@ -5,6 +5,7 @@ import Portfolio from "./Portfolio";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { ToastContainer } from "react-toastify";
 
 // import your icons
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -54,6 +55,7 @@ function App() {
         portfolioRef={scrollToPortfolio}
         contactRef={scrollToContact}
       />
+      <ToastContainer />
     </div>
   );
 }

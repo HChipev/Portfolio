@@ -27,7 +27,7 @@ const Footer = ({ aboutRef, portfolioRef, contactRef }) => {
                 <FontAwesomeIcon icon="fa-brands fa-linkedin" />
               </a>
             </div>
-            <ul className="flex gap-4">
+            <ul className="sm:flex gap-4">
               <li
                 className="cursor-pointer hover:text-white transition"
                 onClick={aboutRef}>
