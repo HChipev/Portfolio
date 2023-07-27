@@ -36,7 +36,7 @@ const Contact = ({ forwardedRef }) => {
     <div className="bg-lightGray py-10" ref={forwardedRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between">
-          <h1 className="text-3xl font-bold text-amber-500 mb-8">Contact</h1>
+          <h1 className="text-3xl font-bold text-amber-500 mb-8">Contact me</h1>
           <div className="flex items-center mb-4">
             <a
               href="https://github.com/HChipev"
