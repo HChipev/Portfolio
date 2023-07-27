@@ -5,6 +5,8 @@ const workHistory = [
     dates: "Apr 2023 - Present",
     imageUrl: "/blankfactor-logo.jpg",
     siteUrl: "https://blankfactor.com/",
+    description:
+      "During my tenure at Blankfactor, I had the incredible opportunity to be part of an exciting project that involved the development of an AI Chatbot. The main objective was to elevate user interactions and establish a seamless conversational experience. Leveraging my expertise in a powerful technology stack, which included React, .NET, and Python, I played a pivotal role in shaping the chatbot's functionality and ensuring it met the highest standards.",
   },
 ];
 
@@ -27,13 +29,14 @@ const About = ({ forwardedRef }) => {
           experiences.
         </p>
         <p className="text-zinc-700 mb-4">
-          During my tenure at Blankfactor, I had the incredible opportunity to
-          be part of an exciting project that involved the development of an AI
-          Chatbot. The main objective was to elevate user interactions and
-          establish a seamless conversational experience. Leveraging my
-          expertise in a powerful technology stack, which included React, .NET,
-          and Python, I played a pivotal role in shaping the chatbot's
-          functionality and ensuring it met the highest standards.
+          As a Full-Stack Developer, I have been involved in various exciting
+          projects that have enriched my expertise and skills. One of my
+          significant contributions was working on an innovative web application
+          that aimed to streamline user interactions and provide a seamless user
+          experience. My responsibilities included utilizing a diverse
+          technology stack, including React, .NET, and Python, to develop
+          efficient and high-quality solutions that met the project's
+          objectives.
         </p>
         <h2 className="text-xl font-bold mb-2">Education</h2>
         <ul className="list-disc list-inside mb-4">
@@ -65,7 +68,7 @@ const About = ({ forwardedRef }) => {
           {workHistory.map((work) => (
             <div
               key={work.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden">
+              className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
                 src={work.imageUrl}
                 alt={work.company}
@@ -75,6 +78,7 @@ const About = ({ forwardedRef }) => {
               <div className="p-4">
                 <h3 className="text-lg font-bold mb-2">{work.company}</h3>
                 <p className="text-zinc-700 mb-2">{work.dates}</p>
+                <p className="text-zinc-700">{work.description}</p>
               </div>
             </div>
           ))}
