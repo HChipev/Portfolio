@@ -12,11 +12,13 @@ import { Helmet } from "react-helmet";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import Certificates from "./Certificates";
 
 function App() {
   const aboutRef = useRef(null);
   const portfolioRef = useRef(null);
   const contactRef = useRef(null);
+  const certificatesRef = useRef(null);
 
   const headerHeight = 80;
   const scrollToRefWithHeaderOffset = (ref) => {
@@ -37,6 +39,10 @@ function App() {
 
   const scrollToContact = () => {
     scrollToRefWithHeaderOffset(contactRef);
+  };
+
+  const scrollToCertificates = () => {
+    scrollToRefWithHeaderOffset(certificatesRef);
   };
 
   return (
@@ -75,9 +81,11 @@ function App() {
         aboutRef={scrollToAbout}
         portfolioRef={scrollToPortfolio}
         contactRef={scrollToContact}
+        certificateRef={scrollToCertificates}
       />
       <main className="mt-24 w-full">
         <About forwardedRef={aboutRef} />
+        <Certificates forwardedRef={certificatesRef} />
         <Portfolio forwardedRef={portfolioRef} />
         <Contact forwardedRef={contactRef} />
       </main>
@@ -85,6 +93,7 @@ function App() {
         aboutRef={scrollToAbout}
         portfolioRef={scrollToPortfolio}
         contactRef={scrollToContact}
+        certificateRef={scrollToCertificates}
       />
       <ToastContainer />
     </div>

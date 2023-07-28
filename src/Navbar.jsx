@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
+const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollPercentage, setScrollPercentage] = useState(0);
 
@@ -50,6 +50,12 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
         </div>
         <div
           className="cursor-pointer hover:text-amber-500 transition"
+          onClick={certificateRef}>
+          <FontAwesomeIcon icon="fa-solid fa-certificate" className="mr-1" />
+          Certificates
+        </div>
+        <div
+          className="cursor-pointer hover:text-amber-500 transition"
           onClick={portfolioRef}>
           <FontAwesomeIcon icon="fa-regular fa-folder-open" className="mr-1" />
           Portfolio
@@ -81,6 +87,12 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef }) => {
             onClick={aboutRef}>
             <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
             About me
+          </div>
+          <div
+            className="cursor-pointer hover:text-amber-500 transition"
+            onClick={certificateRef}>
+            <FontAwesomeIcon icon="fa-solid fa-certificate" className="mr-1" />
+            Certificates
           </div>
           <div
             className="cursor-pointer hover:text-amber-500 transition"

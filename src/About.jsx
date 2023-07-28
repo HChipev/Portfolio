@@ -42,7 +42,7 @@ const About = ({ forwardedRef }) => {
         <ul className="list-disc list-inside mb-4">
           <li className="font-bold">New Bulgarian University</li>
           <li>Bachelor of Informatics</li>
-          <li>2023 - 2027</li>
+          <li>2023 - 2027(expected)</li>
         </ul>
         <ul className="list-disc list-inside mb-4">
           <li className="font-bold">SPGE "John Atanasov"</li>

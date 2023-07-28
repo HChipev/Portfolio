@@ -22,10 +22,10 @@ const projects = [
 
 const Portfolio = ({ forwardedRef }) => {
   return (
-    <div className="bg-amber-500 py-10 mt-10" ref={forwardedRef}>
+    <div className="bg-lightGray py-10" ref={forwardedRef}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-offWhite mb-8">Portfolio</h1>
-        <div className=" text-offWhite text-xl mb-6">
+        <h1 className="text-3xl font-bold text-amber-500 mb-8">Portfolio</h1>
+        <div className=" text-zinc-700 text-xl mb-6">
           <div className="flex gap-1">
             Welcome to my
             <div className="center text-blue">

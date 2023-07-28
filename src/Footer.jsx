@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Footer = ({ aboutRef, portfolioRef, contactRef }) => {
+const Footer = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
   return (
     <footer className="flex bg-black min-h-fit w-full text-amber-500 py-4">
       <div className="max-w-6xl min-w-full px-4 sm:px-6 lg:px-8  h-full">
@@ -33,6 +33,15 @@ const Footer = ({ aboutRef, portfolioRef, contactRef }) => {
                 onClick={aboutRef}>
                 <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
                 About me
+              </li>
+              <li
+                className="cursor-pointer hover:text-white transition"
+                onClick={certificateRef}>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-certificate"
+                  className="mr-1"
+                />
+                Certificates
               </li>
               <li
                 className="cursor-pointer hover:text-white transition"
