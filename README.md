@@ -1,6 +1,6 @@
 # Portfolio Project
 
-![Portfolio Project](https://hristo.ch/)
+![Portfolio Project](https://hristo.ch/hristo-screenshot.jpg)
 
 ## Description
 
