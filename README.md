@@ -55,5 +55,5 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 If you have any questions or would like to get in touch, you can reach me at:
 
 - Email: icko15.8@gmail.com
-- GitHub: [github.com/your-username](https://github.com/HChipev)
-- LinkedIn: [linkedin.com/in/your-username](https://www.linkedin.com/in/hristo-chipev/)
+- GitHub: [github.com/HChipev](https://github.com/HChipev)
+- LinkedIn: [linkedin.com/in/hristo-chipev](https://www.linkedin.com/in/hristo-chipev/)
