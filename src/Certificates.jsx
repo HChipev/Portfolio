@@ -31,7 +31,7 @@ const Certificates = ({ forwardedRef }) => {
               <img
                 src={certificate.imageUrl}
                 alt={certificate.title}
-                className="w-full h-40 object-fill object-center cursor-pointer rounded-t-lg"
+                className="w-full  object-contain object-center cursor-pointer rounded-t-lg"
               />
               <div className="p-4">
                 <h2 className="text-xl font-bold text-zinc-700 mb-2">
