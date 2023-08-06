@@ -55,7 +55,7 @@ const Portfolio = ({ forwardedRef }) => {
           interval={3000}>
           {projects.map((project) => (
             <div key={project.id}>
-              <div className="bg-white rounded-lg shadow-md overflow-hidden m-10 transform transition-transform hover:scale-105 hover:shadow-lg">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden m-5 sm:m-10 transform transition-transform hover:scale-105 hover:shadow-lg">
                 <img
                   src={project.imageUrl}
                   alt={project.title}

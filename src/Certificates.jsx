@@ -11,6 +11,12 @@ const certificatesData = [
     description: "Blankfactor",
     imageUrl: "/nextgen-certificate.jpg",
   },
+  {
+    id: 3,
+    title: "Ultimate C# Masterclass for 2023",
+    description: "Udemy",
+    imageUrl: "/DOTNet-certificate.jpg",
+  },
 ];
 
 const Certificates = ({ forwardedRef }) => {
