@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const workHistory = [
   {
     id: 1,
@@ -7,6 +9,39 @@ const workHistory = [
     siteUrl: "https://blankfactor.com/",
     description:
       "During my tenure at Blankfactor, I had the incredible opportunity to be part of an exciting project that involved the development of an AI Chatbot. The main objective was to elevate user interactions and establish a seamless conversational experience. Leveraging my expertise in a powerful technology stack, which included React, .NET, and Python, I played a pivotal role in shaping the chatbot's functionality and ensuring it met the highest standards.",
+  },
+];
+
+const skills = [
+  {
+    category: "Languages",
+    items: ["C#", "Java", "JavaScript", "HTML/CSS", "MSSQL/MySQL"],
+    icon: "fa-solid fa-circle-check",
+  },
+  {
+    category: "Frameworks",
+    items: [".NET", "Entity Framework", "Vue", "Nuxt", "React"],
+    icon: "fa-solid fa-circle-check",
+  },
+  {
+    category: "Tools",
+    items: ["Git/GitHub"],
+    icon: "fa-solid fa-circle-check",
+  },
+];
+
+const education = [
+  {
+    institution: "SPGE 'John Atanasov'",
+    degree: "High School Diploma - System Programming",
+    dates: "2018 - 2023",
+    icon: "fa-solid fa-circle-check",
+  },
+  {
+    institution: "New Bulgarian University",
+    degree: "Bachelor of Informatics",
+    dates: "2023 - 2027(expected)",
+    icon: "fa-solid fa-circle-check",
   },
 ];
 
@@ -38,37 +73,66 @@ const About = ({ forwardedRef }) => {
           efficient and high-quality solutions that met the project's
           objectives.
         </p>
-        <h2 className="text-xl font-bold mb-2">Education</h2>
-        <ul className="list-disc list-inside mb-4">
-          <li className="font-bold">New Bulgarian University</li>
-          <li>Bachelor of Informatics</li>
-          <li>2023 - 2027(expected)</li>
-        </ul>
-        <ul className="list-disc list-inside mb-4">
-          <li className="font-bold">SPGE "John Atanasov"</li>
-          <li>High School Diploma - System Programming</li>
-          <li>2018 - 2023</li>
-        </ul>
-        <h2 className="text-xl font-bold mb-2">Skills</h2>
-        <ul className="list-disc list-inside">
-          <li>.Net/C#</li>
-          <li>Js/Vue/Nuxt/React</li>
-          <li>Git/GitHub</li>
-          <li>HTML/CSS</li>
-          <li>SQL</li>
-        </ul>
-        <p className="text-zinc-700 mt-4">
-          My dedication to staying up-to-date with the latest industry trends
-          and eagerness to learn drive me to continuously improve my skill set,
-          enabling me to adapt to any challenge that comes my way.
-        </p>
-
-        <h2 className="text-xl font-bold mt-8 mb-4">Work History</h2>
+        <h2 className="text-xl font-bold mb-2">
+          <FontAwesomeIcon className="mr-2" icon="fa-solid fa-school" />
+          Education
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {education.map((edu) => (
+            <div
+              key={edu.institution}
+              className="bg-white border-amber-500 border-t rounded-lg shadow-lg p-4 flex flex-col justify-between transform transition-transform hover:scale-105 hover:rotate-2">
+              <div>
+                <h3 className="text-lg font-bold mb-2">
+                  <FontAwesomeIcon
+                    icon={edu.icon}
+                    className="text-amber-500 mr-2"
+                  />
+                  {edu.institution}
+                </h3>
+                <ul className="list-disc list-inside pl-4">
+                  <li>{edu.degree}</li>
+                  <li>{edu.dates}</li>
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        <h2 className="text-xl font-bold mb-2">
+          <FontAwesomeIcon className="mr-2" icon="fa-solid fa-laptop" />
+          Skills
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {skills.map((skill) => (
+            <div
+              key={skill.category}
+              className="bg-white border-amber-500 border-t rounded-lg shadow-lg p-4 flex flex-col justify-between transform transition-transform hover:scale-105 hover:rotate-2">
+              <div>
+                <h3 className="text-lg font-bold mb-2">
+                  <FontAwesomeIcon
+                    icon={skill.icon}
+                    className="text-amber-500 mr-2"
+                  />
+                  {skill.category}
+                </h3>
+                <ul className="list-disc list-inside pl-4">
+                  {skill.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        <h2 className="text-xl font-bold mt-8 mb-4">
+          <FontAwesomeIcon className="mr-2" icon="fa-solid fa-briefcase" />
+          Work History
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {workHistory.map((work) => (
             <div
               key={work.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden">
+              className="bg-white border-amber-500 border-t rounded-lg shadow-lg overflow-hidden">
               <img
                 src={work.imageUrl}
                 alt={work.company}
@@ -83,6 +147,11 @@ const About = ({ forwardedRef }) => {
             </div>
           ))}
         </div>
+        <p className="text-zinc-700 mt-4">
+          My dedication to staying up-to-date with the latest industry trends
+          and eagerness to learn drive me to continuously improve my skill set,
+          enabling me to adapt to any challenge that comes my way.
+        </p>
       </div>
     </div>
   );
