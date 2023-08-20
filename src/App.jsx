@@ -76,6 +76,12 @@ function App() {
           content="Hi there! I'm Hristo Chipev, a passionate web developer with expertise in React, JavaScript, C#, .NET, and SQL. Check out my portfolio to see my projects and achievements in web development."
         />
         <meta property="twitter:image" content="http://hristo.ch/logo.png" />
+        <link
+          rel="sitemap"
+          type="application/xml"
+          title="Sitemap"
+          href="http://hristo.ch/sitemap.xml"
+        />
       </Helmet>
       <Navbar
         aboutRef={scrollToAbout}
