@@ -81,8 +81,13 @@ const About = ({ forwardedRef }) => {
           {education.map((edu) => (
             <div
               key={edu.institution}
-              className="bg-white border-amber-500 border-t rounded-lg shadow-lg p-4 flex flex-col justify-between transform transition-transform hover:scale-105 hover:rotate-2">
+              className="bg-white border-amber-500 border-t rounded-lg shadow-lg p-4 flex flex-col justify-between transform transition-transform hover:scale-105 hover:rotate-2 relative">
               <div>
+                <img
+                  className="absolute w-24 h-24 -top-7 -translate-x-1/2 left-1/2"
+                  src="/pin.png"
+                  alt="pin"
+                />
                 <h3 className="text-lg font-bold mb-2">
                   <FontAwesomeIcon
                     icon={edu.icon}
@@ -108,6 +113,11 @@ const About = ({ forwardedRef }) => {
               key={skill.category}
               className="bg-white border-amber-500 border-t rounded-lg shadow-lg p-4 flex flex-col justify-between transform transition-transform hover:scale-105 hover:rotate-2">
               <div>
+                <img
+                  className="absolute w-24 h-24 -top-7 -translate-x-1/2 left-1/2"
+                  src="/pin.png"
+                  alt="pin"
+                />
                 <h3 className="text-lg font-bold mb-2">
                   <FontAwesomeIcon
                     icon={skill.icon}

@@ -28,7 +28,7 @@ const Portfolio = ({ forwardedRef }) => {
         <div className=" text-zinc-700 text-xl mb-6">
           <div className="flex gap-1">
             Welcome to my
-            <div className="center text-blue">
+            <div className="flex text-blue">
               <div className="word text-lg">
                 <span>P</span>
                 <span>o</span>

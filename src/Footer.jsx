@@ -6,17 +6,17 @@ const Footer = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
       <div className="max-w-6xl min-w-full px-4 sm:px-6 lg:px-8  h-full">
         <div className="flex flex-col">
           <div className="flex justify-between items-center gap-4 h-full">
-            <div className="flex items-center">
+            <div className="flex flex-col sm:flex-row items-center">
               <a
                 href="https://github.com/HChipev"
                 target="_blank"
-                className="mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
+                className="sm:mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
                 <FontAwesomeIcon icon="fa-brands fa-github" />
               </a>
               <a
                 href="https://www.instagram.com/_hchipev_/"
                 target="_blank"
-                className="mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
+                className="sm:mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
                 <FontAwesomeIcon icon="fa-brands fa-instagram" />
               </a>
               <a

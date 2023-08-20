@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Navbar from "./Navbar";
 import About from "./About";
 import Portfolio from "./Portfolio";
@@ -56,7 +56,7 @@ function App() {
         />
         <meta
           name="keywords"
-          content="portfolio, web development, React, JavaScript, projects, skills, achievements, frontend, backend, C#, .NET, SQL"
+          content="Hristo, Chipev, hristo chipev, portfolio, web development, React, JavaScript, projects, skills, achievements, frontend, backend, C#, .NET, SQL"
         />
         <meta name="author" content="Hristo Chipev" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -23,6 +23,36 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
       window.removeEventListener("scroll", updateScrollPercentage);
     };
   }, []);
+
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  let interval = null;
+
+  const hackerText = (event) => {
+    let iteration = 0;
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+      event.target.innerText = event.target
+        .closest("span")
+        .innerText.split("")
+        .map((_, index) => {
+          if (index < iteration) {
+            return event.target.dataset.value[index];
+          }
+
+          return letters[Math.floor(Math.random() * letters.length)];
+        })
+        .join("");
+
+      if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval);
+      }
+
+      iteration += 1 / 7;
+    }, 30);
+  };
   return (
     <div className="flex fixed bg-white justify-between w-full h-16 z-50 border-b border-b-amber-500">
       <img
@@ -36,12 +66,17 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
           style={{ width: `${scrollPercentage}%` }}></div>
       </div>
       <div className="flex flex-1 justify-start items-center px-2 cursor-default">
-        <h1 className="font-extrabold text-3xl text-blue name-container relative">
-          <span className="italic">Hristo</span>{" "}
-          <span className="text-amber-500 underline-effect">Chipev</span>
+        <h1 className="font-extrabold name text-3xl whitespace-nowrap text-blue">
+          Hristo{" "}
+          <span
+            onMouseOver={(e) => hackerText(e)}
+            data-value="CHIPEV"
+            className="text-amber-500">
+            CHIPEV
+          </span>
         </h1>
       </div>
-      <div className="hidden sm:flex justify-center items-center gap-4 px-2">
+      <div className="hidden md:flex justify-center items-center gap-4 px-2">
         <div
           className="cursor-pointer hover:text-amber-500 transition"
           onClick={aboutRef}>
@@ -68,7 +103,7 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
         </div>
       </div>
 
-      <div className="sm:hidden flex items-center gap-4 px-2">
+      <div className="md:hidden flex items-center gap-4 px-2">
         <FontAwesomeIcon
           icon={isMobileMenuOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
           onClick={handleMobileMenuToggle}
@@ -80,7 +115,7 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
       <div
         className={`${
           isMobileMenuOpen ? "max-h-96" : " max-h-0"
-        } overflow-hidden transition-all ease-linear duration-500 sm:hidden absolute top-16 right-0 left-0 bg-white border-b border-b-amber-500`}>
+        } overflow-hidden transition-all ease-linear duration-500 md:hidden absolute top-16 right-0 left-0 bg-white border-b border-b-amber-500`}>
         <div className="flex flex-col justify-center items-center gap-4 py-4">
           <div
             className="cursor-pointer hover:text-amber-500 transition"

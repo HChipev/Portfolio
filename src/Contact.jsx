@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-
 import emailjs from "emailjs-com";
 import { errorNotifications, successNotification } from "./Notifications";
 
@@ -88,7 +87,7 @@ const Contact = ({ forwardedRef }) => {
               />
               <button
                 type="submit"
-                className="py-2 px-4 bg-white text-zinc-700 rounded-md hover:bg-lightGray transition">
+                className="py-2 px-4 bg-white text-amber-500 rounded-md transition-all duration-500 ease-in-out hover:bg-blue hover:text-white">
                 Send
               </button>
             </form>
