@@ -17,6 +17,12 @@ const certificatesData = [
     description: "Udemy",
     imageUrl: "/DOTNet-certificate.jpg",
   },
+  {
+    id: 4,
+    title: "Learn Parallel Programming with C# and .NET",
+    description: "Udemy",
+    imageUrl: "/Multithreading-certificate.jpg",
+  },
 ];
 
 const Certificates = ({ forwardedRef }) => {

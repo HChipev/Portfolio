@@ -4,11 +4,14 @@ const workHistory = [
   {
     id: 1,
     company: "Blankfactor",
-    dates: "Apr 2023 - Present",
+    positions: [
+      { id: 1, title: "Software Engineer Inter", dates: "Apr 2023 - Oct 2023" },
+      { id: 2, title: "Junior Software Engineer", dates: "Oct 2023 - Present" },
+    ],
     imageUrl: "/blankfactor-logo.jpg",
     siteUrl: "https://blankfactor.com/",
     description:
-      "During my tenure at Blankfactor, I had the incredible opportunity to be part of an exciting project that involved the development of an AI Chatbot. The main objective was to elevate user interactions and establish a seamless conversational experience. Leveraging my expertise in a powerful technology stack, which included React, .NET, and Python, I played a pivotal role in shaping the chatbot's functionality and ensuring it met the highest standards.",
+      "During my time at Blankfactor, I made meaningful contributions to both the development of a Hiring Management System and an AI Chatbot. I specialized in full-stack engineering, emphasizing .NET and Vue.js. I played a pivotal role in crafting a user-friendly and responsive system, optimizing the hiring workflow for efficiency. Simultaneously, I significantly contributed to the AI Chatbot project, where my focus was on enhancing user interactions and ensuring a seamless conversational experience. With expertise in a robust technology stack comprising of React, .NET, and Python. I actively shaped the chatbot's functionality. This experience allowed me to master the synergy between frontend and backend technologies, resulting in a dynamic and responsive system that meets high-performance standards and user satisfaction. Eager to carry this momentum forward, I look forward to contributing to impactful projects and pushing the boundaries of innovation in user experience.",
   },
 ];
 
@@ -150,8 +153,23 @@ const About = ({ forwardedRef }) => {
                 onClick={() => window.open(work.siteUrl, "_blank")}
               />
               <div className="p-4">
-                <h3 className="text-lg font-bold mb-2">{work.company}</h3>
-                <p className="text-zinc-700 mb-2">{work.dates}</p>
+                <h3 className="text-xl font-bold mb-4">{work.company}</h3>
+                {[...work.positions].reverse().map((position) => (
+                  <div
+                    key={position.id}
+                    className="flex flex-col justify-center mb-2 relative">
+                    <div className="flex items-center">
+                      <FontAwesomeIcon
+                        className="mr-1 text-amber-500"
+                        icon="fa-solid fa-circle-chevron-up"
+                      />
+                      <p className="text-zinc-600 font-semibold">
+                        {position.title}
+                      </p>
+                    </div>
+                    <p className="text-blue">{position.dates}</p>
+                  </div>
+                ))}
                 <p className="text-zinc-700">{work.description}</p>
               </div>
             </div>
