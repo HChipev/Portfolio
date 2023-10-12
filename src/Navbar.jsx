@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollPercentage, setScrollPercentage] = useState(0);
+  const location = useLocation();
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
@@ -55,11 +57,13 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
   };
   return (
     <div className="flex fixed bg-white justify-between w-full h-16 z-50 border-b border-b-amber-500">
-      <img
-        className="w-20 h-20 rounded-[50%] shadow-md object-cover z-10 spinOnHover"
-        src="/me.jpg"
-        alt="photo"
-      />
+      <Link className="z-10" to={"/login"}>
+        <img
+          className="w-20 h-20 rounded-[50%] shadow-md object-cover spinOnHover"
+          src="/me.jpg"
+          alt="photo"
+        />
+      </Link>
       <div className="h-1 bg-white absolute bottom-0 left-0 right-0">
         <div
           className="h-full bg-amber-500 rounded-xl"
@@ -77,30 +81,49 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
         </h1>
       </div>
       <div className="hidden md:flex justify-center items-center gap-4 px-2">
-        <div
-          className="cursor-pointer hover:text-amber-500 transition"
-          onClick={aboutRef}>
-          <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
-          About me
-        </div>
-        <div
-          className="cursor-pointer hover:text-amber-500 transition"
-          onClick={certificateRef}>
-          <FontAwesomeIcon icon="fa-solid fa-certificate" className="mr-1" />
-          Certificates
-        </div>
-        <div
-          className="cursor-pointer hover:text-amber-500 transition"
-          onClick={portfolioRef}>
-          <FontAwesomeIcon icon="fa-regular fa-folder-open" className="mr-1" />
-          Portfolio
-        </div>
-        <div
-          className="cursor-pointer hover:text-amber-500 transition"
-          onClick={contactRef}>
-          <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
-          Contact me
-        </div>
+        {location.pathname === "/" && (
+          <div
+            className="cursor-pointer hover:text-amber-500 transition"
+            onClick={aboutRef}>
+            <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
+            About me
+          </div>
+        )}
+        {location.pathname === "/" && (
+          <div
+            className="cursor-pointer hover:text-amber-500 transition"
+            onClick={certificateRef}>
+            <FontAwesomeIcon icon="fa-solid fa-certificate" className="mr-1" />
+            Certificates
+          </div>
+        )}
+        {location.pathname === "/" && (
+          <div
+            className="cursor-pointer hover:text-amber-500 transition"
+            onClick={portfolioRef}>
+            <FontAwesomeIcon
+              icon="fa-regular fa-folder-open"
+              className="mr-1"
+            />
+            Portfolio
+          </div>
+        )}
+        {location.pathname === "/" && (
+          <div
+            className="cursor-pointer hover:text-amber-500 transition"
+            onClick={contactRef}>
+            <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
+            Contact me
+          </div>
+        )}
+        {location.pathname !== "/" && (
+          <Link to={"/"}>
+            <div className="cursor-pointer hover:text-amber-500 transition">
+              <FontAwesomeIcon icon="fa-solid fa-house" className="mr-1" />
+              Home{" "}
+            </div>
+          </Link>
+        )}
       </div>
 
       <div className="md:hidden flex items-center gap-4 px-2">
@@ -117,33 +140,52 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
           isMobileMenuOpen ? "max-h-96" : " max-h-0"
         } overflow-hidden transition-all ease-linear duration-500 md:hidden absolute top-16 right-0 left-0 bg-white border-b border-b-amber-500`}>
         <div className="flex flex-col justify-center items-center gap-4 py-4">
-          <div
-            className="cursor-pointer hover:text-amber-500 transition"
-            onClick={aboutRef}>
-            <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
-            About me
-          </div>
-          <div
-            className="cursor-pointer hover:text-amber-500 transition"
-            onClick={certificateRef}>
-            <FontAwesomeIcon icon="fa-solid fa-certificate" className="mr-1" />
-            Certificates
-          </div>
-          <div
-            className="cursor-pointer hover:text-amber-500 transition"
-            onClick={portfolioRef}>
-            <FontAwesomeIcon
-              icon="fa-regular fa-folder-open"
-              className="mr-1"
-            />
-            Portfolio
-          </div>
-          <div
-            className="cursor-pointer hover:text-amber-500 transition"
-            onClick={contactRef}>
-            <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
-            Contact me
-          </div>
+          {location.pathname === "/" && (
+            <div
+              className="cursor-pointer hover:text-amber-500 transition"
+              onClick={aboutRef}>
+              <FontAwesomeIcon icon="fa-solid fa-laptop" className="mr-1" />
+              About me
+            </div>
+          )}
+          {location.pathname === "/" && (
+            <div
+              className="cursor-pointer hover:text-amber-500 transition"
+              onClick={certificateRef}>
+              <FontAwesomeIcon
+                icon="fa-solid fa-certificate"
+                className="mr-1"
+              />
+              Certificates
+            </div>
+          )}
+          {location.pathname === "/" && (
+            <div
+              className="cursor-pointer hover:text-amber-500 transition"
+              onClick={portfolioRef}>
+              <FontAwesomeIcon
+                icon="fa-regular fa-folder-open"
+                className="mr-1"
+              />
+              Portfolio
+            </div>
+          )}
+          {location.pathname === "/" && (
+            <div
+              className="cursor-pointer hover:text-amber-500 transition"
+              onClick={contactRef}>
+              <FontAwesomeIcon icon="fa-regular fa-envelope" className="mr-1" />
+              Contact me
+            </div>
+          )}
+          {location.pathname !== "/" && (
+            <Link to={"/"}>
+              <div className="cursor-pointer hover:text-amber-500 transition">
+                <FontAwesomeIcon icon="fa-solid fa-house" className="mr-1" />
+                Home{" "}
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </div>
