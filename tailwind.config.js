@@ -10,6 +10,7 @@ export default {
         gray: "#E5E5E5",
         darkGray: "#CCCCCC",
         red: "#FF0000",
+        redDark: "#B30000",
         blue: "#0077b6",
         green: "#00FF00",
         purple: "#800080",

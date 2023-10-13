@@ -102,3 +102,7 @@ body {
 .spinOnHover:hover {
   animation: spin 2s cubic-bezier(0.18, 0.93, 0.33, 0.95);
 }
+
+.ag-cell-focus {
+  --ag-range-selection-border-color: transparent !important;
+}
