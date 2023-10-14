@@ -3,10 +3,23 @@
     "baseAPIAddress": "http://localhost:8080/api/",
     "login": "Identity/login",
     "refreshToken": "Identity/refresh-token",
+
     "addLanguage": "Language/add",
     "getLanguage": "Language/get/",
     "getLanguages": "Language/all",
     "updateLanguage": "Language/update",
-    "deleteLanguage": "Language/delete/"
+    "deleteLanguage": "Language/delete/",
+
+    "addFramework": "Framework/add",
+    "getFramework": "Framework/get/",
+    "getFrameworks": "Framework/all",
+    "updateFramework": "Framework/update",
+    "deleteFramework": "Framework/delete/",
+
+    "addTool": "Tool/add",
+    "getTool": "Tool/get/",
+    "getTools": "Tool/all",
+    "updateTool": "Tool/update",
+    "deleteTool": "Tool/delete/"
   }
 }

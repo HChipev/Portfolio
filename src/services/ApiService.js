@@ -88,6 +88,100 @@ const deleteLanguage = async (id) => {
   return res;
 };
 
+const addFramework = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addFramework"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getFrameworks = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getFrameworks"),
+  });
+
+  return res;
+};
+
+const getFramework = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getFramework") + id,
+  });
+
+  return res;
+};
+
+const updateFramework = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updateFramework"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deleteFramework = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deleteFramework") + id,
+  });
+
+  return res;
+};
+
+const addTool = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addTool"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getTools = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getTools"),
+  });
+
+  return res;
+};
+
+const getTool = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getTool") + id,
+  });
+
+  return res;
+};
+
+const updateTool = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updateTool"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deleteTool = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deleteTool") + id,
+  });
+
+  return res;
+};
+
 export default {
   login,
   refreshToken,
@@ -96,4 +190,14 @@ export default {
   getLanguage,
   updateLanguage,
   deleteLanguage,
+  addFramework,
+  getFrameworks,
+  getFramework,
+  updateFramework,
+  deleteFramework,
+  addTool,
+  getTools,
+  getTool,
+  updateTool,
+  deleteTool,
 };

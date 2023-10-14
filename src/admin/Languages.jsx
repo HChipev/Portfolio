@@ -66,9 +66,9 @@ const Languages = () => {
     setModalData(data);
   };
 
-  const handleDelete = (id) => {
-    ApiService.deleteLanguage(id);
-    setRowData(rowData.filter((data) => data.id !== id));
+  const handleDelete = async (id) => {
+    await ApiService.deleteLanguage(id);
+    setRowData((await ApiService.getLanguages()).data);
   };
 
   const updateData = async (e) => {
@@ -85,7 +85,7 @@ const Languages = () => {
   };
 
   return (
-    <div className="flex flex-col w-full py-3">
+    <div className="flex flex-col w-full py-4">
       <div className="flex justify-between px-4">
         <h1 className="text-3xl text-amber-500 mb-4 px-4">Languages</h1>
         <button
@@ -115,7 +115,7 @@ const Languages = () => {
               placeholder="Language"
               className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
               required
-              value={modalData.name}
+              value={modalData.name ?? ""}
               onChange={(e) =>
                 setModalData({ ...modalData, name: e.target.value })
               }

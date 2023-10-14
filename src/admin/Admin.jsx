@@ -1,4 +1,6 @@
+import Frameworks from "./Frameworks";
 import Languages from "./Languages";
+import Tools from "./Tools";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Admin = () => {
@@ -15,6 +17,8 @@ const Admin = () => {
           </button>
         </div>
         <Languages />
+        <Frameworks />
+        <Tools />
       </div>
     </div>
   );
