@@ -1,4 +1,5 @@
 import Languages from "./Languages";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Admin = () => {
   return (
@@ -7,9 +8,10 @@ const Admin = () => {
         <h1 className="text-4xl text-center text-amber-500 font-semibold">
           Admin
         </h1>
-        <div className="flex w-full justify-end p-3">
+        <div className="flex w-full justify-end p-3 mb-4">
           <button className="bg-blue text-white py-2 px-4 rounded-lg hover:bg-amber-500 transition-colors duration-300 focus:outline-none">
-            Logout
+            Logout{" "}
+            <FontAwesomeIcon className="ml-2" icon="fa-solid fa-sign-out-alt" />
           </button>
         </div>
         <Languages />
