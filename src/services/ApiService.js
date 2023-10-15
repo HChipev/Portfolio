@@ -182,6 +182,100 @@ const deleteTool = async (id) => {
   return res;
 };
 
+const addEducation = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addEducation"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getEducations = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getEducations"),
+  });
+
+  return res;
+};
+
+const getEducation = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getEducation") + id,
+  });
+
+  return res;
+};
+
+const updateEducation = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updateEducation"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deleteEducation = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deleteEducation") + id,
+  });
+
+  return res;
+};
+
+const addWork = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addWork"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getWorks = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getWorks"),
+  });
+
+  return res;
+};
+
+const getWork = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getWork") + id,
+  });
+
+  return res;
+};
+
+const updateWork = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updateWork"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deleteWork = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deleteWork") + id,
+  });
+
+  return res;
+};
+
 export default {
   login,
   refreshToken,
@@ -200,4 +294,14 @@ export default {
   getTool,
   updateTool,
   deleteTool,
+  addEducation,
+  getEducations,
+  getEducation,
+  updateEducation,
+  deleteEducation,
+  addWork,
+  getWorks,
+  getWork,
+  updateWork,
+  deleteWork,
 };

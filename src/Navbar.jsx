@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,9 +56,12 @@ const Navbar = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
       iteration += 1 / 7;
     }, 30);
   };
+
+  const isAuthenticated = useSelector((state) => state.auth.value);
+
   return (
     <div className="flex fixed bg-white justify-between w-full h-16 z-50 border-b border-b-amber-500">
-      <Link className="z-10" to={"/login"}>
+      <Link className="z-10" to={isAuthenticated ? "/admin" : "/login"}>
         <img
           className="w-20 h-20 rounded-[50%] shadow-md object-cover spinOnHover"
           src="/me.jpg"

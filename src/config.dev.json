@@ -20,6 +20,18 @@
     "getTool": "Tool/get/",
     "getTools": "Tool/all",
     "updateTool": "Tool/update",
-    "deleteTool": "Tool/delete/"
+    "deleteTool": "Tool/delete/",
+
+    "addEducation": "Education/add",
+    "getEducation": "Education/get/",
+    "getEducations": "Education/all",
+    "updateEducation": "Education/update",
+    "deleteEducation": "Education/delete/",
+
+    "addWork": "Work/add",
+    "getWork": "Work/get/",
+    "getWorks": "Work/all",
+    "updateWork": "Work/update",
+    "deleteWork": "Work/delete/"
   }
 }

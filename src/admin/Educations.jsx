@@ -6,7 +6,7 @@ import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Languages = () => {
+const Educations = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
 
@@ -29,7 +29,24 @@ const Languages = () => {
 
   const [columnsDef] = useState([
     { headerName: "ID", field: "id", width: 100, resizable: true },
-    { headerName: "Language", field: "name", width: 100, resizable: true },
+    {
+      headerName: "Institution",
+      field: "institution",
+      width: 100,
+      resizable: true,
+    },
+    {
+      headerName: "Degree",
+      field: "degree",
+      width: 100,
+      resizable: true,
+    },
+    {
+      headerName: "Dates",
+      field: "dates",
+      width: 100,
+      resizable: true,
+    },
     {
       headerName: "Actions",
       cellRenderer: (params) => (
@@ -54,11 +71,11 @@ const Languages = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    async function getLanguages() {
-      setRowData((await ApiService.getLanguages()).data);
+    async function getEducations() {
+      setRowData((await ApiService.getEducations()).data);
     }
 
-    getLanguages();
+    getEducations();
   }, []);
 
   const handleEdit = (data) => {
@@ -67,27 +84,27 @@ const Languages = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteLanguage(id);
-    setRowData((await ApiService.getLanguages()).data);
+    await ApiService.deleteEducation(id);
+    setRowData((await ApiService.getEducations()).data);
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addLanguage(modalData);
+      await ApiService.addEducation(modalData);
     } else {
-      await ApiService.updateLanguage(modalData);
+      await ApiService.updateEducation(modalData);
     }
 
-    setRowData((await ApiService.getLanguages()).data);
+    setRowData((await ApiService.getEducations()).data);
     closeModal();
   };
 
   return (
     <div className="flex flex-col w-full py-4">
       <div className="flex justify-between px-4">
-        <h1 className="text-3xl text-amber-500 mb-4 px-4">Languages</h1>
+        <h1 className="text-3xl text-amber-500 mb-4 px-4">Educations</h1>
         <button
           className="bg-blue text-white w-10 h-10 rounded-lg hover:bg-amber-500 transition-colors duration-300 focus:outline-none"
           onClick={openModal}>
@@ -107,19 +124,45 @@ const Languages = () => {
       <ModalWrapper isOpen={isModalOpen} closeModal={closeModal}>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-2xl text-amber-500 mb-4">
-            {modalData.id ? "Edit" : "Add"} Language
+            {modalData.id ? "Edit" : "Add"} Education
           </h1>
           <form className="flex flex-col space-y-4">
             <div className="flex flex-col">
-              <label className="text-amber-500 font-bold">Language</label>
+              <label className="text-amber-500 font-bold">Education</label>
               <input
                 type="text"
-                placeholder="Language"
+                placeholder="Education"
                 className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
                 required
-                value={modalData.name ?? ""}
+                value={modalData.institution ?? ""}
                 onChange={(e) =>
-                  setModalData({ ...modalData, name: e.target.value })
+                  setModalData({ ...modalData, institution: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-amber-500 font-bold">Degree</label>
+              <input
+                type="text"
+                placeholder="Degree"
+                className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
+                required
+                value={modalData.degree ?? ""}
+                onChange={(e) =>
+                  setModalData({ ...modalData, degree: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-amber-500 font-bold">Dates</label>
+              <input
+                type="text"
+                placeholder="Dates"
+                className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
+                required
+                value={modalData.dates ?? ""}
+                onChange={(e) =>
+                  setModalData({ ...modalData, dates: e.target.value })
                 }
               />
             </div>
@@ -136,4 +179,4 @@ const Languages = () => {
   );
 };
 
-export default Languages;
+export default Educations;

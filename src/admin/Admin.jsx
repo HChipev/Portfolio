@@ -1,6 +1,8 @@
+import Educations from "./Educations";
 import Frameworks from "./Frameworks";
 import Languages from "./Languages";
 import Tools from "./Tools";
+import Works from "./Works";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Admin = () => {
@@ -19,6 +21,8 @@ const Admin = () => {
         <Languages />
         <Frameworks />
         <Tools />
+        <Educations />
+        <Works />
       </div>
     </div>
   );

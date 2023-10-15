@@ -110,16 +110,19 @@ const Frameworks = () => {
             {modalData.id ? "Edit" : "Add"} Framework
           </h1>
           <form className="flex flex-col space-y-4">
-            <input
-              type="text"
-              placeholder="Framework"
-              className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
-              required
-              value={modalData.name ?? ""}
-              onChange={(e) =>
-                setModalData({ ...modalData, name: e.target.value })
-              }
-            />
+            <div className="flex flex-col">
+              <label className="text-amber-500 font-bold">Framework</label>
+              <input
+                type="text"
+                placeholder="Framework"
+                className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
+                required
+                value={modalData.name ?? ""}
+                onChange={(e) =>
+                  setModalData({ ...modalData, name: e.target.value })
+                }
+              />
+            </div>
             <button
               onClick={updateData}
               type="submit"
