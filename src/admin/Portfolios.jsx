@@ -194,7 +194,7 @@ const Portfolios = () => {
               <label className="text-amber-500 font-bold">Project</label>
               <input
                 type="text"
-                placeholder="Portfolio"
+                placeholder="Project"
                 className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
                 required
                 value={modalData.name ?? ""}
