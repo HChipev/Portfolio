@@ -1,3 +1,4 @@
+import Certificates from "./Certificates";
 import Educations from "./Educations";
 import Frameworks from "./Frameworks";
 import Languages from "./Languages";
@@ -23,6 +24,7 @@ const Admin = () => {
         <Tools />
         <Educations />
         <Works />
+        <Certificates />
       </div>
     </div>
   );

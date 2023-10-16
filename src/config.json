@@ -32,6 +32,12 @@
     "getWork": "Work/get/",
     "getWorks": "Work/all",
     "updateWork": "Work/update",
-    "deleteWork": "Work/delete/"
+    "deleteWork": "Work/delete/",
+
+    "addCertificate": "Certificate/add",
+    "getCertificate": "Certificate/get/",
+    "getCertificates": "Certificate/all",
+    "updateCertificate": "Certificate/update",
+    "deleteCertificate": "Certificate/delete/"
   }
 }

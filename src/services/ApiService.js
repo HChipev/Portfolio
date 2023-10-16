@@ -276,6 +276,53 @@ const deleteWork = async (id) => {
   return res;
 };
 
+const addCertificate = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addCertificate"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getCertificates = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getCertificates"),
+  });
+
+  return res;
+};
+
+const getCertificate = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getCertificate") + id,
+  });
+
+  return res;
+};
+
+const updateCertificate = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updateCertificate"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deleteCertificate = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deleteCertificate") + id,
+  });
+
+  return res;
+};
+
 export default {
   login,
   refreshToken,
@@ -304,4 +351,9 @@ export default {
   getWork,
   updateWork,
   deleteWork,
+  addCertificate,
+  getCertificates,
+  getCertificate,
+  updateCertificate,
+  deleteCertificate,
 };
