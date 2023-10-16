@@ -102,6 +102,7 @@ const Works = () => {
       ),
       width: 150,
       resizable: true,
+      autoHeight: true,
     },
   ]);
 
@@ -227,8 +228,7 @@ const Works = () => {
             </div>
             <div className="flex flex-col">
               <label className="text-amber-500 font-bold">Description</label>
-              <input
-                type="text"
+              <textarea
                 placeholder="Description"
                 className="border rounded-lg py-2 px-3 w-full focus:outline-none border-amber-500 focus:border-blue"
                 required

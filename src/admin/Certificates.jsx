@@ -73,6 +73,7 @@ const Certificates = () => {
       ),
       width: 150,
       resizable: true,
+      autoHeight: true,
     },
   ]);
 

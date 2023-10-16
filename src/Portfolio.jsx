@@ -72,7 +72,7 @@ const Portfolio = ({ forwardedRef }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-amber-500 font-bold relative overflow-hidden group">
-                    Visit Site
+                    Visit
                     <span className="absolute left-0 bottom-0 h-0.5 w-full bg-amber-500 transform scale-x-0 transition-transform group-hover:scale-x-100 duration-500" />
                   </a>
                 </div>

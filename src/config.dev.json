@@ -38,6 +38,12 @@
     "getCertificate": "Certificate/get/",
     "getCertificates": "Certificate/all",
     "updateCertificate": "Certificate/update",
-    "deleteCertificate": "Certificate/delete/"
+    "deleteCertificate": "Certificate/delete/",
+
+    "addPortfolio": "Portfolio/add",
+    "getPortfolio": "Portfolio/get/",
+    "getPortfolios": "Portfolio/all",
+    "updatePortfolio": "Portfolio/update",
+    "deletePortfolio": "Portfolio/delete/"
   }
 }

@@ -36,12 +36,12 @@ const Languages = () => {
       cellRenderer: (params) => (
         <div className="flex justify-between w-full h-full overflow-x-auto">
           <button
-            className="flex items-center justify-center bg-blue hover:bg-amber-500 text-white font-bold mx-2 my-1 w-full rounded transition-all duration-300 ease-in-out"
+            className="flex items-center justify-center bg-blue hover:bg-amber-500 text-white font-bold mx-2 my-1 w-full h-10 rounded transition-all duration-300 ease-in-out"
             onClick={() => handleEdit(params.data)}>
             <FontAwesomeIcon icon="fa-solid fa-edit" />
           </button>
           <button
-            className="flex items-center justify-center bg-red hover:bg-redDark text-white font-bold mx-2 my-1 w-full rounded transition-all duration-300 ease-in-out"
+            className="flex items-center justify-center bg-red hover:bg-redDark text-white font-bold mx-2 my-1 w-full h-10 rounded transition-all duration-300 ease-in-out"
             onClick={() => handleDelete(params.data.id)}>
             <FontAwesomeIcon icon="fa-solid fa-trash-alt" />
           </button>
@@ -49,6 +49,7 @@ const Languages = () => {
       ),
       width: 100,
       resizable: true,
+      autoHeight: true,
     },
   ]);
 

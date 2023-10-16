@@ -323,6 +323,53 @@ const deleteCertificate = async (id) => {
   return res;
 };
 
+const addPortfolio = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.addPortfolio"),
+    data: data,
+  });
+
+  return res;
+};
+
+const getPortfolios = async () => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getPortfolios"),
+  });
+
+  return res;
+};
+
+const getPortfolio = async (id) => {
+  const res = await client({
+    method: "GET",
+    url: configService.get("api.getPortfolio") + id,
+  });
+
+  return res;
+};
+
+const updatePortfolio = async (data) => {
+  const res = await client({
+    method: "PUT",
+    url: configService.get("api.updatePortfolio"),
+    data: data,
+  });
+
+  return res;
+};
+
+const deletePortfolio = async (id) => {
+  const res = await client({
+    method: "DELETE",
+    url: configService.get("api.deletePortfolio") + id,
+  });
+
+  return res;
+};
+
 export default {
   login,
   refreshToken,
@@ -356,4 +403,9 @@ export default {
   getCertificate,
   updateCertificate,
   deleteCertificate,
+  addPortfolio,
+  getPortfolios,
+  getPortfolio,
+  updatePortfolio,
+  deletePortfolio,
 };

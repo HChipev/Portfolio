@@ -2,6 +2,7 @@ import Certificates from "./Certificates";
 import Educations from "./Educations";
 import Frameworks from "./Frameworks";
 import Languages from "./Languages";
+import Portfolios from "./Portfolios";
 import Tools from "./Tools";
 import Works from "./Works";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,6 +26,7 @@ const Admin = () => {
         <Educations />
         <Works />
         <Certificates />
+        <Portfolios />
       </div>
     </div>
   );
