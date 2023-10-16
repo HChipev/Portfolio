@@ -1,1 +1,49 @@
-{}
+{
+  "api": {
+    "baseAPIAddress": "https://hristo-portfolio-back-end-e0fbc505078a.herokuapp.com/api/",
+    "login": "Identity/login",
+    "refreshToken": "Identity/refresh-token",
+
+    "addLanguage": "Language/add",
+    "getLanguage": "Language/get/",
+    "getLanguages": "Language/all",
+    "updateLanguage": "Language/update",
+    "deleteLanguage": "Language/delete/",
+
+    "addFramework": "Framework/add",
+    "getFramework": "Framework/get/",
+    "getFrameworks": "Framework/all",
+    "updateFramework": "Framework/update",
+    "deleteFramework": "Framework/delete/",
+
+    "addTool": "Tool/add",
+    "getTool": "Tool/get/",
+    "getTools": "Tool/all",
+    "updateTool": "Tool/update",
+    "deleteTool": "Tool/delete/",
+
+    "addEducation": "Education/add",
+    "getEducation": "Education/get/",
+    "getEducations": "Education/all",
+    "updateEducation": "Education/update",
+    "deleteEducation": "Education/delete/",
+
+    "addWork": "Work/add",
+    "getWork": "Work/get/",
+    "getWorks": "Work/all",
+    "updateWork": "Work/update",
+    "deleteWork": "Work/delete/",
+
+    "addCertificate": "Certificate/add",
+    "getCertificate": "Certificate/get/",
+    "getCertificates": "Certificate/all",
+    "updateCertificate": "Certificate/update",
+    "deleteCertificate": "Certificate/delete/",
+
+    "addPortfolio": "Portfolio/add",
+    "getPortfolio": "Portfolio/get/",
+    "getPortfolios": "Portfolio/all",
+    "updatePortfolio": "Portfolio/update",
+    "deletePortfolio": "Portfolio/delete/"
+  }
+}

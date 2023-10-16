@@ -4,7 +4,8 @@ import configProd from "../config.prod.json";
 
 class ConfigService {
   constructor() {
-    const env = import.meta.env.CONFIG_ENV;
+    const env = import.meta.env.VITE_CONFIG_ENV;
+    console.log("env", env, import.meta.env);
     if (env === "development") {
       this._config = configDev;
     } else if (env === "production") {
