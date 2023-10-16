@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { errorNotifications } from "../Notifications";
 
 const Tools = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +56,17 @@ const Tools = () => {
 
   useEffect(() => {
     async function getTools() {
-      setRowData((await ApiService.getTools()).data);
+      setRowData(
+        (
+          await ApiService.getTools().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
     }
 
     getTools();
@@ -67,20 +78,58 @@ const Tools = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteTool(id);
-    setRowData((await ApiService.getTools()).data);
+    await ApiService.deleteTool(id).catch((error) =>
+      errorNotifications(
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
+      )
+    );
+    setRowData(
+      (
+        await ApiService.getTools().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addTool(modalData);
+      await ApiService.addTool(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     } else {
-      await ApiService.updateTool(modalData);
+      await ApiService.updateTool(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     }
 
-    setRowData((await ApiService.getTools()).data);
+    setRowData(
+      (
+        await ApiService.getTools().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
     closeModal();
   };
 

@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { errorNotifications } from "../Notifications";
 
 const Frameworks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +56,17 @@ const Frameworks = () => {
 
   useEffect(() => {
     async function getFrameworks() {
-      setRowData((await ApiService.getFrameworks()).data);
+      setRowData(
+        (
+          await ApiService.getFrameworks().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
     }
 
     getFrameworks();
@@ -67,20 +78,58 @@ const Frameworks = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteFramework(id);
-    setRowData((await ApiService.getFrameworks()).data);
+    await ApiService.deleteFramework(id).catch((error) =>
+      errorNotifications(
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
+      )
+    );
+    setRowData(
+      (
+        await ApiService.getFrameworks().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addFramework(modalData);
+      await ApiService.addFramework(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     } else {
-      await ApiService.updateFramework(modalData);
+      await ApiService.updateFramework(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     }
 
-    setRowData((await ApiService.getFrameworks()).data);
+    setRowData(
+      (
+        await ApiService.getFrameworks().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
     closeModal();
   };
 

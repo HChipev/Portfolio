@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { set } from "./store/auth/authSlice";
+import { errorNotifications } from "./Notifications";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -55,6 +56,9 @@ const Login = () => {
         } catch (err) {
           checkForAuthentication(false);
 
+          errorNotifications(
+            err.response.data ? err.response.data : err.response.statusText
+          );
           localStorage.removeItem("token");
           localStorage.removeItem("refreshToken");
           navigate("/");
@@ -87,6 +91,9 @@ const Login = () => {
     } catch (err) {
       checkForAuthentication(false);
 
+      errorNotifications(
+        err.response.data ? err.response.data : err.response.statusText
+      );
       setError(err.response.data);
       setTimeout(() => {
         setError("");

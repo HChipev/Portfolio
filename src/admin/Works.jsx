@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { errorNotifications } from "../Notifications";
 
 const Works = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,7 +109,17 @@ const Works = () => {
 
   useEffect(() => {
     async function getWorks() {
-      setRowData((await ApiService.getWorks()).data);
+      setRowData(
+        (
+          await ApiService.getWorks().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
     }
 
     getWorks();
@@ -120,20 +131,58 @@ const Works = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteWork(id);
-    setRowData((await ApiService.getWorks()).data);
+    await ApiService.deleteWork(id).catch((error) =>
+      errorNotifications(
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
+      )
+    );
+    setRowData(
+      (
+        await ApiService.getWorks().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addWork(modalData);
+      await ApiService.addWork(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     } else {
-      await ApiService.updateWork(modalData);
+      await ApiService.updateWork(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     }
 
-    setRowData((await ApiService.getWorks()).data);
+    setRowData(
+      (
+        await ApiService.getWorks().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
     closeModal();
   };
 

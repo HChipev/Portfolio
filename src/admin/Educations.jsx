@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { errorNotifications } from "../Notifications";
 
 const Educations = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +73,17 @@ const Educations = () => {
 
   useEffect(() => {
     async function getEducations() {
-      setRowData((await ApiService.getEducations()).data);
+      setRowData(
+        (
+          await ApiService.getEducations().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
     }
 
     getEducations();
@@ -84,20 +95,58 @@ const Educations = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteEducation(id);
-    setRowData((await ApiService.getEducations()).data);
+    await ApiService.deleteEducation(id).catch((error) =>
+      errorNotifications(
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
+      )
+    );
+    setRowData(
+      (
+        await ApiService.getEducations().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addEducation(modalData);
+      await ApiService.addEducation(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     } else {
-      await ApiService.updateEducation(modalData);
+      await ApiService.updateEducation(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     }
 
-    setRowData((await ApiService.getEducations()).data);
+    setRowData(
+      (
+        await ApiService.getEducations().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
     closeModal();
   };
 

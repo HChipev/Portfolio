@@ -5,6 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import ModalWrapper from "../ModalWrapper";
 import ApiService from "../services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { errorNotifications } from "../Notifications";
 
 const Languages = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,7 +56,17 @@ const Languages = () => {
 
   useEffect(() => {
     async function getLanguages() {
-      setRowData((await ApiService.getLanguages()).data);
+      setRowData(
+        (
+          await ApiService.getLanguages().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
     }
 
     getLanguages();
@@ -67,20 +78,58 @@ const Languages = () => {
   };
 
   const handleDelete = async (id) => {
-    await ApiService.deleteLanguage(id);
-    setRowData((await ApiService.getLanguages()).data);
+    await ApiService.deleteLanguage(id).catch((error) =>
+      errorNotifications(
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
+      )
+    );
+    setRowData(
+      (
+        await ApiService.getLanguages().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
   };
 
   const updateData = async (e) => {
     e.preventDefault();
 
     if (!modalData.id) {
-      await ApiService.addLanguage(modalData);
+      await ApiService.addLanguage(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     } else {
-      await ApiService.updateLanguage(modalData);
+      await ApiService.updateLanguage(modalData).catch((error) =>
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        )
+      );
     }
 
-    setRowData((await ApiService.getLanguages()).data);
+    setRowData(
+      (
+        await ApiService.getLanguages().catch((error) =>
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          )
+        )
+      ).data
+    );
     closeModal();
   };
 
