@@ -1,54 +1,91 @@
+import { useEffect, useState } from "react";
+import { errorNotifications } from "./Notifications";
+import ApiService from "./services/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const workHistory = [
-  {
-    id: 1,
-    company: "Blankfactor",
-    positions: [
-      { id: 1, title: "Software Engineer Inter", dates: "Apr 2023 - Oct 2023" },
-      { id: 2, title: "Junior Software Engineer", dates: "Oct 2023 - Present" },
-    ],
-    imageUrl: "/blankfactor-logo.jpg",
-    siteUrl: "https://blankfactor.com/",
-    description:
-      "During my time at Blankfactor, I made meaningful contributions to both the development of a Hiring Management System and an AI Chatbot. I specialized in full-stack engineering, emphasizing .NET and Vue.js. I played a pivotal role in crafting a user-friendly and responsive system, optimizing the hiring workflow for efficiency. Simultaneously, I significantly contributed to the AI Chatbot project, where my focus was on enhancing user interactions and ensuring a seamless conversational experience. With expertise in a robust technology stack comprising of React, .NET, and Python. I actively shaped the chatbot's functionality. This experience allowed me to master the synergy between frontend and backend technologies, resulting in a dynamic and responsive system that meets high-performance standards and user satisfaction. Eager to carry this momentum forward, I look forward to contributing to impactful projects and pushing the boundaries of innovation in user experience.",
-  },
-];
-
-const skills = [
-  {
-    category: "Languages",
-    items: ["C#", "Java", "JavaScript", "HTML/CSS", "MSSQL/MySQL"],
-    icon: "fa-solid fa-circle-check",
-  },
-  {
-    category: "Frameworks",
-    items: [".NET", "Entity Framework", "Vue", "Nuxt", "React"],
-    icon: "fa-solid fa-circle-check",
-  },
-  {
-    category: "Tools",
-    items: ["Git/GitHub"],
-    icon: "fa-solid fa-circle-check",
-  },
-];
-
-const education = [
-  {
-    institution: "SPGE 'John Atanasov'",
-    degree: "High School Diploma - System Programming",
-    dates: "2018 - 2023",
-    icon: "fa-solid fa-circle-check",
-  },
-  {
-    institution: "New Bulgarian University",
-    degree: "Bachelor of Informatics",
-    dates: "2023 - 2027(expected)",
-    icon: "fa-solid fa-circle-check",
-  },
-];
-
 const About = ({ forwardedRef }) => {
+  const [workHistory, setWorkHistory] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [education, setEducation] = useState([]);
+
+  useEffect(() => {
+    async function getWorkHistory() {
+      setWorkHistory(
+        (
+          await ApiService.getWorks().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          )
+        ).data
+      );
+    }
+
+    async function getSkills() {
+      setSkills([
+        {
+          category: "Languages",
+          items: (
+            await ApiService.getLanguages().catch((error) =>
+              errorNotifications(
+                error.response.data
+                  ? error.response.data.title ?? error.response.data
+                  : error.message
+              )
+            )
+          ).data.map((language) => language.name),
+          icon: "fa-solid fa-circle-check",
+        },
+        {
+          category: "Frameworks",
+          items: (
+            await ApiService.getFrameworks().catch((error) =>
+              errorNotifications(
+                error.response.data
+                  ? error.response.data.title ?? error.response.data
+                  : error.message
+              )
+            )
+          ).data.map((framework) => framework.name),
+          icon: "fa-solid fa-circle-check",
+        },
+        {
+          category: "Tools",
+          items: (
+            await ApiService.getTools().catch((error) =>
+              errorNotifications(
+                error.response.data
+                  ? error.response.data.title ?? error.response.data
+                  : error.message
+              )
+            )
+          ).data.map((tool) => tool.name),
+          icon: "fa-solid fa-circle-check",
+        },
+      ]);
+    }
+
+    async function getEducation() {
+      setEducation(
+        (
+          await ApiService.getEducations().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          )
+        ).data
+      );
+    }
+
+    getWorkHistory();
+    getSkills();
+    getEducation();
+  }, []);
+
   return (
     <div
       className="bg-lightGray w-full flex justify-center items-center"
@@ -93,7 +130,7 @@ const About = ({ forwardedRef }) => {
                 />
                 <h3 className="text-lg font-bold mb-2">
                   <FontAwesomeIcon
-                    icon={edu.icon}
+                    icon="fa-solid fa-circle-check"
                     className="text-amber-500 mr-2"
                   />
                   {edu.institution}
@@ -147,7 +184,7 @@ const About = ({ forwardedRef }) => {
               key={work.id}
               className="bg-white border-amber-500 border-t rounded-lg shadow-lg overflow-hidden">
               <img
-                src={work.imageUrl}
+                src={`data:image/png;base64,${work.image}`}
                 alt={work.company}
                 className="w-full h-32 object-cover object-center cursor-pointer duration-300 ease-in-out transition-transform transform hover:scale-105"
                 onClick={() => window.open(work.siteUrl, "_blank")}
@@ -164,7 +201,7 @@ const About = ({ forwardedRef }) => {
                         icon="fa-solid fa-circle-chevron-up"
                       />
                       <p className="text-zinc-600 font-semibold">
-                        {position.title}
+                        {position.name}
                       </p>
                     </div>
                     <p className="text-blue">{position.dates}</p>

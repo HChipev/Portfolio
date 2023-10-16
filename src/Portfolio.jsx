@@ -1,26 +1,29 @@
+import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
+import ApiService from "./services/ApiService";
+import { errorNotifications } from "./Notifications";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const projects = [
-  {
-    id: 1,
-    title: "4ip's Auto",
-    description:
-      "4ip's Auto: A one-stop platform for buying and selling used cars and car parts. Intuitive interface, and hassle-free experience.",
-    imageUrl: "/4ips-auto.jpg",
-    siteUrl: "https://4ips-auto.vercel.app/",
-  },
-  {
-    id: 2,
-    title: "Sanction List Checker",
-    description:
-      "Sanction List Checker: Streamlined verification against sanction lists. Ensure compliance with ease.",
-    imageUrl: "/sanc-project.jpg",
-    siteUrl: "https://sanction-list-checker.vercel.app/",
-  },
-];
-
 const Portfolio = ({ forwardedRef }) => {
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    async function getProjects() {
+      setProjects(
+        (
+          await ApiService.getPortfolios().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.response.statusText
+            )
+          )
+        ).data
+      );
+    }
+
+    getProjects();
+  }, []);
+
   return (
     <div className="bg-lightGray py-10" ref={forwardedRef}>
       <div className="sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl bg-white rounded-md shadow-zinc-700 shadow-md mx-auto p-8">
@@ -57,14 +60,14 @@ const Portfolio = ({ forwardedRef }) => {
             <div key={project.id}>
               <div className="bg-white rounded-lg shadow-md overflow-hidden m-5 sm:m-10 transform transition-transform hover:scale-105 hover:shadow-lg">
                 <img
-                  src={project.imageUrl}
-                  alt={project.title}
+                  src={`data:image/png;base64,${project.image}`}
+                  alt={project.name}
                   className="w-full h-40 object-cover object-top cursor-pointer"
                   onClick={() => window.open(project.siteUrl, "_blank")}
                 />
                 <div className="p-4">
                   <h2 className="text-xl font-bold text-zinc-700 mb-2">
-                    {project.title}
+                    {project.name}
                   </h2>
                   <p className="text-zinc-700 mb-4">{project.description}</p>
                   <a
