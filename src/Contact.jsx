@@ -41,20 +41,36 @@ const Contact = ({ forwardedRef }) => {
               href="https://github.com/HChipev"
               target="_blank"
               className="mr-4 text-3xl text-offWhite hover:text-blue transition duration-300">
-              <FontAwesomeIcon icon="fa-brands fa-github" />
+              <FontAwesomeIcon className="w-8 h-8" icon="fa-brands fa-github" />
             </a>
             <a
               href="https://www.instagram.com/_hchipev_/"
               target="_blank"
               className="mr-4 text-3xl text-offWhite hover:text-blue transition duration-300">
-              <FontAwesomeIcon icon="fa-brands fa-instagram" />
+              <FontAwesomeIcon
+                className="w-8 h-8"
+                icon="fa-brands fa-instagram"
+              />
             </a>
             <a
               href="https://www.linkedin.com/in/hristo-chipev/"
               target="_blank"
               rel="noopener noreferrer"
+              className="mr-4 text-3xl text-offWhite hover:text-blue transition duration-300">
+              <FontAwesomeIcon
+                className="w-8 h-8"
+                icon="fa-brands fa-linkedin"
+              />
+            </a>
+            <a
+              href="https://www.buymeacoffee.com/hchipev"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-3xl text-offWhite hover:text-blue transition duration-300">
-              <FontAwesomeIcon icon="fa-brands fa-linkedin" />
+              <FontAwesomeIcon
+                className="w-8 h-8 pb-1"
+                icon="fa-solid fa-mug-hot"
+              />
             </a>
           </div>
         </div>
