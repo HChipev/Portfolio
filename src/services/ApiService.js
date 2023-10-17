@@ -31,6 +31,15 @@ const login = async (data) => {
   return res;
 };
 
+const logout = async () => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.logout"),
+  });
+
+  return res;
+};
+
 const refreshToken = async (data) => {
   const res = await client({
     method: "POST",
@@ -372,6 +381,7 @@ const deletePortfolio = async (id) => {
 
 export default {
   login,
+  logout,
   refreshToken,
   addLanguage,
   getLanguages,

@@ -2,6 +2,7 @@
   "api": {
     "baseAPIAddress": "https://hristo-portfolio-back-end-e0fbc505078a.herokuapp.com/api/",
     "login": "Identity/login",
+    "logout": "Identity/logout",
     "refreshToken": "Identity/refresh-token",
 
     "addLanguage": "Language/add",

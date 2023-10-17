@@ -2,6 +2,7 @@
   "api": {
     "baseAPIAddress": "http://localhost:8080/api/",
     "login": "Identity/login",
+    "logout": "Identity/logout",
     "refreshToken": "Identity/refresh-token",
 
     "addLanguage": "Language/add",

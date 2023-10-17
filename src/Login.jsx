@@ -10,7 +10,6 @@ import { errorNotifications } from "./Notifications";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [isLockHover, setLockHover] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,34 +36,52 @@ const Login = () => {
         "Your session is about to expire. Do you want to extend it?"
       );
       if (extendSession) {
-        let res;
-        try {
-          res = await ApiService.refreshToken({
-            token: localStorage.getItem("token"),
-            refreshToken: localStorage.getItem("refreshToken"),
-          });
-          checkForAuthentication(true);
-
-          localStorage.setItem("token", res.headers["access-token"]);
-          localStorage.setItem("refreshToken", res.headers["refresh-token"]);
-
-          const remainingTime = calculateRemainingTime(
-            res.headers["access-token"]
-          );
-
-          await extendSession(remainingTime);
-        } catch (err) {
+        const res = await ApiService.refreshToken({
+          token: localStorage.getItem("token"),
+          refreshToken: localStorage.getItem("refreshToken"),
+        }).catch((error) => {
           checkForAuthentication(false);
 
           errorNotifications(
-            err.response.data ? err.response.data : err.response.statusText
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
           );
+
           localStorage.removeItem("token");
           localStorage.removeItem("refreshToken");
           navigate("/");
-        }
+
+          return null;
+        });
+
+        if (!res) return;
+
+        checkForAuthentication(true);
+
+        localStorage.setItem("token", res.headers["access-token"]);
+        localStorage.setItem("refreshToken", res.headers["refresh-token"]);
+
+        const remainingTime = calculateRemainingTime(
+          res.headers["access-token"]
+        );
+
+        await extendSession(remainingTime);
       }
 
+      const res = await ApiService.logout().catch((error) => {
+        errorNotifications(
+          error.response.data
+            ? error.response.data.title ?? error.response.data
+            : error.response.statusText
+        );
+
+        return null;
+      });
+
+      if (!res) return;
+
+      checkForAuthentication(false);
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
       navigate("/");
@@ -73,32 +90,38 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let res;
-    try {
-      res = await ApiService.login({ email: email, password: password });
-      checkForAuthentication(true);
 
-      localStorage.setItem("token", res.headers["access-token"]);
-      localStorage.setItem("refreshToken", res.headers["refresh-token"]);
-
-      const remainingTime = calculateRemainingTime(res.headers["access-token"]);
-
-      await extendSession(remainingTime);
-      setPassword("");
-      setEmail("");
-
-      navigate("/admin");
-    } catch (err) {
-      checkForAuthentication(false);
-
+    const res = await ApiService.login({
+      email: email,
+      password: password,
+    }).catch((error) => {
       errorNotifications(
-        err.response.data ? err.response.data : err.response.statusText
+        error.response.data
+          ? error.response.data.title ?? error.response.data
+          : error.response.statusText
       );
-      setError(err.response.data);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
+
+      checkForAuthentication(false);
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+
+      return null;
+    });
+
+    if (!res) return;
+
+    checkForAuthentication(true);
+
+    localStorage.setItem("token", res.headers["access-token"]);
+    localStorage.setItem("refreshToken", res.headers["refresh-token"]);
+
+    const remainingTime = calculateRemainingTime(res.headers["access-token"]);
+
+    await extendSession(remainingTime);
+    setPassword("");
+    setEmail("");
+
+    navigate("/admin");
   };
 
   return (
@@ -115,7 +138,6 @@ const Login = () => {
             } transition-transform duration-300 ease-linear`}
           />
         </div>
-        {error && <p className="text-red mb-4">{error}</p>}
         <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
