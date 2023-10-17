@@ -28,13 +28,16 @@ const Works = () => {
 
   const autoSizeAll = useCallback(() => {
     const allColumnIds = [];
-    gridRef.current.columnApi.getColumns().forEach((column) => {
+    gridRef.current?.columnApi.getColumns().forEach((column) => {
       allColumnIds.push(column.getId());
     });
-    gridRef.current.columnApi.autoSizeColumns(allColumnIds, false);
+    gridRef.current?.columnApi.autoSizeColumns(allColumnIds, false);
   }, []);
 
-  window.addEventListener("resize", sizeToFit);
+  window.addEventListener(
+    "resize",
+    window.innerWidth >= 640 ? sizeToFit : autoSizeAll
+  );
 
   const [columnsDef] = useState([
     { headerName: "ID", field: "id", width: 100, resizable: true },
@@ -67,8 +70,8 @@ const Works = () => {
       cellRenderer: (params) => {
         const positions = params.value;
         return (
-          <div className="nested-grid">
-            <ul className="list-disc pl-4 overflow-x-auto">
+          <div className="flex w-full">
+            <ul className="list-disc pl-4">
               {positions.map((position) => (
                 <li key={position.id} className="mb-2">
                   <span className="font-bold">Name:</span> {position.name},
@@ -87,7 +90,7 @@ const Works = () => {
     {
       headerName: "Actions",
       cellRenderer: (params) => (
-        <div className="flex justify-between w-full h-full min-w-[100px]">
+        <div className="flex justify-between w-full h-full">
           <button
             className="flex items-center justify-center bg-blue hover:bg-amber-500 text-white font-bold mx-2 my-1 w-full h-10 rounded transition-all duration-300 ease-in-out"
             onClick={() => handleEdit(params.data)}>
@@ -100,7 +103,7 @@ const Works = () => {
           </button>
         </div>
       ),
-      width: 150,
+      width: 200,
       resizable: true,
       autoHeight: true,
     },

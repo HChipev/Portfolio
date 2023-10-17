@@ -5,6 +5,7 @@ import Home from "./Home";
 import Login from "./Login";
 import ScrollToTop from "./ScrollToTop";
 import Admin from "./admin/Admin";
+import NotFound from "./NotFound";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
@@ -116,7 +117,7 @@ function App() {
             element={
               isAuthenticated ? <Admin /> : <Navigate to="/login" />
             }></Route>
-          <Route path="*" element={<h1>404</h1>}></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
 
         <Footer

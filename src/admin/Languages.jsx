@@ -34,7 +34,7 @@ const Languages = () => {
     {
       headerName: "Actions",
       cellRenderer: (params) => (
-        <div className="flex justify-between w-full h-full overflow-x-auto">
+        <div className="flex justify-between w-full h-full">
           <button
             className="flex items-center justify-center bg-blue hover:bg-amber-500 text-white font-bold mx-2 my-1 w-full h-10 rounded transition-all duration-300 ease-in-out"
             onClick={() => handleEdit(params.data)}>
