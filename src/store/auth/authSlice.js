@@ -22,13 +22,13 @@ export const authSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    set: (state, action) => {
+    setIsAuthenticated: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { set } = authSlice.actions;
+export const { setIsAuthenticated } = authSlice.actions;
 
 export default authSlice.reducer;

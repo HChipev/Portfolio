@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ApiService from "./services/ApiService";
-import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { set } from "./store/auth/authSlice";
+import { setIsAuthenticated } from "./store/auth/authSlice";
 import { errorNotifications } from "./Notifications";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,77 +15,13 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const checkForAuthentication = (success) => {
-    success ? dispatch(set(true)) : dispatch(set(false));
+    success
+      ? dispatch(setIsAuthenticated(true))
+      : dispatch(setIsAuthenticated(false));
   };
 
   const handleLockHoverToggle = () => {
     setLockHover(!isLockHover);
-  };
-
-  const calculateRemainingTime = (token) => {
-    const tokenPayload = jwtDecode(token);
-    const expirationTime = tokenPayload.exp * 1000;
-    const currentTime = new Date().getTime();
-
-    return expirationTime - currentTime;
-  };
-
-  const extendSession = async (remainingTime) => {
-    setTimeout(async () => {
-      const extendSession = window.confirm(
-        "Your session is about to expire. Do you want to extend it?"
-      );
-      if (extendSession) {
-        const res = await ApiService.refreshToken({
-          token: localStorage.getItem("token"),
-          refreshToken: localStorage.getItem("refreshToken"),
-        }).catch((error) => {
-          checkForAuthentication(false);
-
-          errorNotifications(
-            error.response.data
-              ? error.response.data.title ?? error.response.data
-              : error.response.statusText
-          );
-
-          localStorage.removeItem("token");
-          localStorage.removeItem("refreshToken");
-          navigate("/");
-
-          return null;
-        });
-
-        if (!res) return;
-
-        checkForAuthentication(true);
-
-        localStorage.setItem("token", res.headers["access-token"]);
-        localStorage.setItem("refreshToken", res.headers["refresh-token"]);
-
-        const remainingTime = calculateRemainingTime(
-          res.headers["access-token"]
-        );
-
-        await extendSession(remainingTime);
-      }
-
-      const res = await ApiService.logout().catch((error) => {
-        errorNotifications(
-          error.response.data
-            ? error.response.data.title ?? error.response.data
-            : error.response.statusText
-        );
-
-        return null;
-      });
-
-      if (!res) return;
-
-      checkForAuthentication(false);
-      localStorage.removeItem("token");
-      localStorage.removeItem("refreshToken");
-      navigate("/");
-    }, remainingTime);
   };
 
   const handleSubmit = async (e) => {
@@ -115,9 +51,38 @@ const Login = () => {
     localStorage.setItem("token", res.headers["access-token"]);
     localStorage.setItem("refreshToken", res.headers["refresh-token"]);
 
-    const remainingTime = calculateRemainingTime(res.headers["access-token"]);
+    const refreshToken = async (expirationTime) =>
+      await setTimeout(async () => {
+        const res = await ApiService.refreshToken({
+          token: localStorage.getItem("token"),
+          refreshToken: localStorage.getItem("refreshToken"),
+        }).catch((error) => {
+          errorNotifications(
+            error.response.data
+              ? error.response.data.title ?? error.response.data
+              : error.response.statusText
+          );
 
-    await extendSession(remainingTime);
+          checkForAuthentication(false);
+          localStorage.removeItem("token");
+          localStorage.removeItem("refreshToken");
+
+          return null;
+        });
+
+        if (!res) return;
+
+        checkForAuthentication(true);
+        localStorage.setItem("token", res.headers["access-token"]);
+
+        await refreshToken(
+          jwtDecode(res.headers["access-token"]).exp * 1000 - Date.now() + 5000
+        );
+      }, expirationTime);
+    await refreshToken(
+      jwtDecode(res.headers["access-token"]).exp * 1000 - Date.now() + 5000
+    );
+
     setPassword("");
     setEmail("");
 

@@ -9,7 +9,7 @@ import Works from "./Works";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { errorNotifications } from "../Notifications";
-import { set } from "../store/auth/authSlice";
+import { setIsAuthenticated } from "../store/auth/authSlice";
 import { useDispatch } from "react-redux";
 
 const Admin = () => {
@@ -29,7 +29,7 @@ const Admin = () => {
 
     if (!res) return;
 
-    dispatch(set(false));
+    dispatch(setIsAuthenticated(false));
 
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");

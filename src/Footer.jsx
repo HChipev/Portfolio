@@ -32,7 +32,7 @@ const Footer = ({ aboutRef, portfolioRef, contactRef, certificateRef }) => {
                 href="https://www.linkedin.com/in/hristo-chipev/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
+                className="sm:mr-4 text-3xl text-amber-500 hover:text-white transition duration-300">
                 <FontAwesomeIcon
                   className="w-8 h-8"
                   icon="fa-brands fa-linkedin"
