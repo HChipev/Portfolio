@@ -25,7 +25,7 @@ const Certificates = ({ forwardedRef }) => {
 
   return (
     <div className="bg-amber-500 py-10 mt-10" ref={forwardedRef}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 section">
         <h1 className="text-3xl font-bold text-offWhite mb-8">Certificates</h1>
         <p className="text-offWhite mb-8">
           Here you can find a collection of my certificates and achievements.

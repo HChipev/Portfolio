@@ -33,7 +33,7 @@ const Contact = ({ forwardedRef }) => {
 
   return (
     <div className="bg-amber-500 py-10" ref={forwardedRef}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 section">
         <div className="flex justify-between">
           <h1 className="text-3xl font-bold text-offWhite mb-8">Contact Me</h1>
           <div className="flex items-center mb-4">

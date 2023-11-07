@@ -26,7 +26,7 @@ const Portfolio = ({ forwardedRef }) => {
 
   return (
     <div className="bg-lightGray py-10" ref={forwardedRef}>
-      <div className="sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl bg-white rounded-md shadow-zinc-700 shadow-md mx-auto p-8">
+      <div className="sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl bg-white rounded-md shadow-zinc-700 shadow-md mx-auto p-8 section">
         <h1 className="text-3xl font-bold text-amber-500 mb-8">Portfolio</h1>
         <div className=" text-zinc-700 text-xl mb-6">
           <div className="flex gap-1">

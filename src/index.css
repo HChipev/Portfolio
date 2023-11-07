@@ -106,3 +106,12 @@ body {
 .ag-cell-focus {
   --ag-range-selection-border-color: transparent !important;
 }
+
+.section {
+  transition: all 1s cubic-bezier(0.18, 0.93, 0.33, 0.95);
+}
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(8rem);
+}
