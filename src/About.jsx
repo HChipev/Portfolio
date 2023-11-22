@@ -9,81 +9,68 @@ const About = ({ forwardedRef }) => {
   const [education, setEducation] = useState([]);
 
   useEffect(() => {
-    async function getWorkHistory() {
-      setWorkHistory(
-        (
-          await ApiService.getWorks().catch((error) =>
+    async function loadAboutInfo() {
+      const [works, languages, frameworks, tools, educations] =
+        await Promise.all([
+          ApiService.getWorks().catch((error) =>
             errorNotifications(
               error.response.data
                 ? error.response.data.title ?? error.response.data
                 : error.message
             )
-          )
-        ).data
-      );
-    }
+          ),
+          ApiService.getLanguages().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          ),
+          ApiService.getFrameworks().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          ),
+          ApiService.getTools().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          ),
+          ApiService.getEducations().catch((error) =>
+            errorNotifications(
+              error.response.data
+                ? error.response.data.title ?? error.response.data
+                : error.message
+            )
+          ),
+        ]);
 
-    async function getSkills() {
+      setWorkHistory(works.data);
       setSkills([
         {
           category: "Languages",
-          items: (
-            await ApiService.getLanguages().catch((error) =>
-              errorNotifications(
-                error.response.data
-                  ? error.response.data.title ?? error.response.data
-                  : error.message
-              )
-            )
-          ).data.map((language) => language.name),
+          items: languages.data.map((language) => language.name),
           icon: "fa-solid fa-circle-check",
         },
         {
           category: "Frameworks",
-          items: (
-            await ApiService.getFrameworks().catch((error) =>
-              errorNotifications(
-                error.response.data
-                  ? error.response.data.title ?? error.response.data
-                  : error.message
-              )
-            )
-          ).data.map((framework) => framework.name),
+          items: frameworks.data.map((framework) => framework.name),
           icon: "fa-solid fa-circle-check",
         },
         {
           category: "Tools",
-          items: (
-            await ApiService.getTools().catch((error) =>
-              errorNotifications(
-                error.response.data
-                  ? error.response.data.title ?? error.response.data
-                  : error.message
-              )
-            )
-          ).data.map((tool) => tool.name),
+          items: tools.data.map((tool) => tool.name),
           icon: "fa-solid fa-circle-check",
         },
       ]);
+      setEducation(educations.data);
     }
 
-    async function getEducation() {
-      setEducation(
-        (
-          await ApiService.getEducations().catch((error) =>
-            errorNotifications(
-              error.response.data
-                ? error.response.data.title ?? error.response.data
-                : error.message
-            )
-          )
-        ).data
-      );
-    }
-
-    getWorkHistory();
-    getSkills();
-    getEducation();
+    loadAboutInfo();
   }, []);
 
   return (

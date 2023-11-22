@@ -8,7 +8,6 @@ function Home({ aboutRef, certificatesRef, portfolioRef, contactRef }) {
   useEffect(() => {
     const showSection = (entries, observer) => {
       const [entry] = entries;
-      console.log("test");
       if (!entry.isIntersecting) return;
 
       entry.target.classList.remove("section-hidden");
@@ -21,7 +20,6 @@ function Home({ aboutRef, certificatesRef, portfolioRef, contactRef }) {
     });
 
     const sections = document.querySelectorAll(".section");
-    console.log(sections);
     sections.forEach((section) => {
       sectionObserver.observe(section);
       section.classList.add("section-hidden");
