@@ -379,6 +379,16 @@ const deletePortfolio = async (id) => {
   return res;
 };
 
+const sendEmail = async (data) => {
+  const res = await client({
+    method: "POST",
+    url: configService.get("api.sendEmail"),
+    data: data,
+  });
+
+  return res;
+};
+
 export default {
   login,
   logout,
@@ -418,4 +428,5 @@ export default {
   getPortfolio,
   updatePortfolio,
   deletePortfolio,
+  sendEmail,
 };

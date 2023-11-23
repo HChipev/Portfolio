@@ -77,7 +77,7 @@ const About = ({ forwardedRef }) => {
     <div
       className="bg-lightGray w-full flex justify-center items-center"
       ref={forwardedRef}>
-      <div className="sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl bg-white p-8 rounded-md shadow-zinc-700 shadow-md section">
+      <div className="sm:max-w-3xl lg:max-w-4xl xl:max-w-6xl bg-white p-8 rounded-md shadow-zinc-700 shadow-md section min-h-[700px]">
         <h1 className="text-3xl font-bold mb-4">
           About Me - Full-Stack Developer
         </h1>

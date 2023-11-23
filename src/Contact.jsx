@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import emailjs from "emailjs-com";
 import { errorNotifications, successNotification } from "./Notifications";
+import ApiService from "./services/ApiService";
 
 const Contact = ({ forwardedRef }) => {
   const [name, setName] = useState("");
@@ -12,16 +13,12 @@ const Contact = ({ forwardedRef }) => {
     e.preventDefault();
     try {
       const templateParams = {
-        from_name: name,
-        from_email: email,
+        senderName: name,
+        senderEmail: email,
         message: message,
       };
 
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const userId = import.meta.env.VITE_EMAILJS_USER_ID;
-
-      await emailjs.send(serviceId, templateId, templateParams, userId);
+      await ApiService.sendEmail(templateParams);
 
       successNotification("Email sent successfully!");
     } catch (error) {

@@ -45,6 +45,8 @@
     "getPortfolio": "Portfolio/get/",
     "getPortfolios": "Portfolio/all",
     "updatePortfolio": "Portfolio/update",
-    "deletePortfolio": "Portfolio/delete/"
+    "deletePortfolio": "Portfolio/delete/",
+
+    "sendEmail": "Communication/email"
   }
 }
